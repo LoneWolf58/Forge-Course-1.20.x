@@ -2,6 +2,7 @@ package net.marshall.mccourse;
 
 import com.mojang.logging.LogUtils;
 import net.marshall.mccourse.block.ModBlocks;
+import net.marshall.mccourse.item.ModCreativeModeTabs;
 import net.marshall.mccourse.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -34,6 +35,8 @@ public class MCCourseMod
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModCreativeModeTabs.register(modEventBus);
+
         ModItems.register(modEventBus);
 
         ModBlocks.register(modEventBus);
@@ -58,18 +61,7 @@ public class MCCourseMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
-                event.accept(ModBlocks.ALEXANDRITE_BLOCK);
-        }
 
-        if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS){
-            event.accept(ModBlocks.ALEXANDRITE_ORE);
-        }
-
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
-           event.accept(ModItems.ALEXANDRITE);
-           event.accept(ModItems.RAW_ALEXANDRITE);
-        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
