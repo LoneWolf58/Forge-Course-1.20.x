@@ -2,6 +2,7 @@ package net.marshall.mccourse.item;
 
 import net.marshall.mccourse.MCCourseMod;
 import net.marshall.mccourse.item.custom.MetalDetectorItem;
+import net.marshall.mccourse.item.custom.ModFoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +21,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> METAL_DETECTOR = ITEMS.register( "metal_detector",
             () -> new MetalDetectorItem(new Item.Properties().durability(512)));
+
+    public static final RegistryObject<Item> KOHLRABI = ITEMS.register( "kohlrabi",
+            () -> new MetalDetectorItem(new Item.Properties().food(ModFoodProperties.KOHLRABI)));
 
 
     public static void register(IEventBus eventBus){
