@@ -1,6 +1,7 @@
 package net.marshall.mccourse.item;
 
 import net.marshall.mccourse.MCCourseMod;
+import net.marshall.mccourse.item.custom.FuelItem;
 import net.marshall.mccourse.item.custom.MetalDetectorItem;
 import net.marshall.mccourse.item.custom.ModFoodProperties;
 import net.minecraft.world.item.Item;
@@ -24,6 +25,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> KOHLRABI = ITEMS.register( "kohlrabi",
             () -> new MetalDetectorItem(new Item.Properties().food(ModFoodProperties.KOHLRABI)));
+
+    public static final RegistryObject<Item> PEAT_BRICK = ITEMS.register( "peat_brick",
+            () -> new FuelItem(new Item.Properties(), 100));
+
 
 
     public static void register(IEventBus eventBus){
