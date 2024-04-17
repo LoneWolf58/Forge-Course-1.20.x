@@ -6,13 +6,11 @@ import net.marshall.mccourse.item.ModItems;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -46,6 +44,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmelting(pWriter, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 200, "alexandrite");
         oreBlasting(pWriter, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.5f, 100, "alexandrite");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_SLAB.get())
+                .pattern("   ")
+                .pattern("AAA")
+                .pattern("   ")
+                .define('A', ModItems.ALEXANDRITE.get())
+                .unlockedBy("has_alexandrite", inventoryTrigger(ItemPredicate.Builder.item().
+                        of(ModItems.ALEXANDRITE.get()).build())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_STAIRS.get())
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .define('A', ModItems.ALEXANDRITE.get())
+                .unlockedBy("has_alexandrite", inventoryTrigger(ItemPredicate.Builder.item().
+                        of(ModItems.ALEXANDRITE.get()).build())).save(pWriter);
+
     }
 
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
