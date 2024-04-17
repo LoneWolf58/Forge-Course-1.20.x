@@ -12,7 +12,9 @@
   "block.mccourse.end_stone_alexandrite_ore":   "End Stone Alexandrite Ore",
   "block.mccourse.nether_alexandrite_ore":   "Nether Alexandrite Ore",
   "block.mccourse.alexandrite_stairs":   "Alexandrite Stairs",
-  "block.mccourse.Alexandrite_slab":   "Alexandrite Slab",
+  "block.mccourse.alexandrite_slab":   "Alexandrite Slab",
+  "block.mccourse.alexandrite_pressure_plate":   "Alexandrite Pressure Plate",
+  "block.mccourse.alexandrite_button":   "Alexandrite Button",
 
   "creativetab.course_tab": "Course Tab",
 
