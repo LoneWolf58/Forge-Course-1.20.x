@@ -1,10 +1,15 @@
 package net.marshall.mccourse.block;
 
 import net.marshall.mccourse.MCCourseMod;
+import net.marshall.mccourse.block.custom.AlexandriteLampBlock;
+import net.marshall.mccourse.block.custom.GemEmpoweringStationBlock;
+import net.marshall.mccourse.block.custom.KohlrabiCropBlock;
 import net.marshall.mccourse.block.custom.SoundBlock;
 import net.marshall.mccourse.item.ModItems;
+import net.marshall.mccourse.sound.ModSounds;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -50,6 +55,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
+    public static final RegistryObject<Block> ALEXANDRITE_LAMP = registerBlock("alexandrite_lamp",
+            () -> new AlexandriteLampBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).sound(ModSounds.ALEXANDRITE_LAMP_SOUNDS)
+                    .strength(5f)
+                    .lightLevel(state -> state.getValue(AlexandriteLampBlock.CLICKED) ? 15 : 0)));
+
     public static final RegistryObject<Block> ALEXANDRITE_STAIRS = registerBlock("alexandrite_stairs",
             () -> new StairBlock(() -> ModBlocks.ALEXANDRITE_BLOCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.copy(Blocks.GRANITE_STAIRS).sound(SoundType.METAL)));
@@ -71,6 +81,17 @@ public class ModBlocks {
     public static final RegistryObject<Block> ALEXANDRITE_WALL = registerBlock("alexandrite_wall",
             () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
+    public static final RegistryObject<Block> KOHLRABI_CROP = BLOCKS.register("kohlrabi_crop",
+            () -> new KohlrabiCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noCollission().noOcclusion()));
+
+    public static final RegistryObject<Block> SNAPDRAGON = registerBlock("snapdragon",
+            () -> new FlowerBlock(MobEffects.BLINDNESS, 6, BlockBehaviour.Properties.copy(Blocks.ALLIUM)));
+
+    public static final RegistryObject<Block> POTTED_SNAPDRAGON = BLOCKS.register("potted_snapdragon",
+            () -> new FlowerPotBlock((() -> (FlowerPotBlock) Blocks.FLOWER_POT), SNAPDRAGON, BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM)));
+
+    public static final RegistryObject<Block> GEM_EMPOWERING_STATION = registerBlock("gem_empowering_station",
+            () -> new GemEmpoweringStationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){

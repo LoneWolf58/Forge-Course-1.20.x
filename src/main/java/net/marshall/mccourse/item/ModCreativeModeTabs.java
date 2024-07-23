@@ -24,10 +24,14 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.METAL_DETECTOR.get());
 
+                        output.accept(ModItems.DATA_TABLET.get());
+
                         output.accept(ModItems.KOHLRABI.get());
                         output.accept(ModItems.PEAT_BRICK.get());
 
                         output.accept(ModBlocks.SOUND_BLOCK.get());
+
+                        output.accept(ModBlocks.SNAPDRAGON.get());
 
                         output.accept(ModBlocks.ALEXANDRITE_BLOCK.get());
                         output.accept(ModBlocks.DEEPSLATE_ALEXANDRITE_ORE.get());
@@ -43,6 +47,31 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ALEXANDRITE_FENCE.get());
                         output.accept(ModBlocks.ALEXANDRITE_FENCE_GATE.get());
                         output.accept(ModBlocks.ALEXANDRITE_WALL.get());
+
+                        output.accept(ModBlocks.ALEXANDRITE_LAMP.get());
+
+                        output.accept(ModItems.ALEXANDRITE_SWORD.get());
+                        output.accept(ModItems.ALEXANDRITE_HOE.get());
+                        output.accept(ModItems.ALEXANDRITE_SHOVEL.get());
+                        output.accept(ModItems.ALEXANDRITE_PICKAXE.get());
+                        output.accept(ModItems.ALEXANDRITE_AXE.get());
+                        output.accept(ModItems.ALEXANDRITE_PAXEL.get());
+                        output.accept(ModItems.ALEXANDRITE_HAMMER.get());
+
+                        output.accept(ModItems.ALEXANDRITE_HELMET.get());
+                        output.accept(ModItems.ALEXANDRITE_CHESTPLATE.get());
+                        output.accept(ModItems.ALEXANDRITE_LEGGING.get());
+                        output.accept(ModItems.ALEXANDRITE_BOOTS.get());
+
+                        output.accept(ModItems.ALEXANDRITE_HORSE_ARMOR.get());
+
+                        output.accept(ModItems.RADIATION_STAFF.get());
+
+                        output.accept(ModItems.ALEXANDRITE_BOW.get());
+
+                        output.accept(ModItems.ALEXANDRITE_SHIELD.get());
+
+                        output.accept(ModBlocks.GEM_EMPOWERING_STATION.get());
 
                     }).build());
 

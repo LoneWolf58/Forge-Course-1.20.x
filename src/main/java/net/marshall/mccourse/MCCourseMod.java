@@ -2,12 +2,28 @@ package net.marshall.mccourse;
 
 import com.mojang.logging.LogUtils;
 import net.marshall.mccourse.block.ModBlocks;
+import net.marshall.mccourse.effect.ModEffects;
+import net.marshall.mccourse.enchantment.ModEnchantments;
 import net.marshall.mccourse.item.ModCreativeModeTabs;
+import net.marshall.mccourse.item.ModItemProperties;
 import net.marshall.mccourse.item.ModItems;
+import net.marshall.mccourse.loot.ModLootModifiers;
+import net.marshall.mccourse.painting.ModPaintings;
+import net.marshall.mccourse.potion.BetterBrewingRecipe;
+import net.marshall.mccourse.potion.ModPotionsClass;
+import net.marshall.mccourse.sound.ModSounds;
+import net.marshall.mccourse.villager.ModVillagers;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.EventBus;
@@ -41,6 +57,20 @@ public class MCCourseMod
 
         ModBlocks.register(modEventBus);
 
+        ModEnchantments.register(modEventBus);
+
+        ModSounds.register(modEventBus);
+
+        ModLootModifiers.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
+
+        ModPaintings.PAINTING_VARIANTS.register(modEventBus);
+
+        ModEffects.MOB_EFFECTS.register(modEventBus);
+
+        ModPotionsClass.register(modEventBus);
+
+        ModVillagers.register(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -51,11 +81,15 @@ public class MCCourseMod
         modEventBus.addListener(this::addCreative);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
+    private void commonSetup(final FMLCommonSetupEvent event) {
+      event.enqueueWork(() -> {
+                  ComposterBlock.COMPOSTABLES.put(ModItems.KOHLRABI.get(), 0.35f);
+                  ComposterBlock.COMPOSTABLES.put(ModItems.KOHLRABI_SEEDS.get(), 0.20f);
+
+          ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SNAPDRAGON.getId(), ModBlocks.POTTED_SNAPDRAGON);
+              });
+
+        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD, Items.SLIME_BALL, ModPotionsClass.SLIMEY_POTION.get()));
     }
 
     // Add the example block item to the building blocks tab
@@ -73,11 +107,13 @@ public class MCCourseMod
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
+    public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                ModItemProperties.addCustomItemProperties();
+
+            });
         }
     }
 }
