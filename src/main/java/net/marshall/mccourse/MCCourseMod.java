@@ -9,6 +9,7 @@ import net.marshall.mccourse.item.ModItemProperties;
 import net.marshall.mccourse.item.ModItems;
 import net.marshall.mccourse.loot.ModLootModifiers;
 import net.marshall.mccourse.painting.ModPaintings;
+import net.marshall.mccourse.particle.ModParticles;
 import net.marshall.mccourse.potion.BetterBrewingRecipe;
 import net.marshall.mccourse.potion.ModPotionsClass;
 import net.marshall.mccourse.sound.ModSounds;
@@ -70,6 +71,8 @@ public class MCCourseMod
         ModPotionsClass.register(modEventBus);
 
         ModVillagers.register(modEventBus);
+
+        ModParticles.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

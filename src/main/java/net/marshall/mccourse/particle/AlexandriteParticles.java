@@ -1,9 +1,8 @@
 package net.marshall.mccourse.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.particle.*;
+import net.minecraft.core.particles.SimpleParticleType;
 
 public class AlexandriteParticles extends TextureSheetParticle {
     protected AlexandriteParticles(ClientLevel pLevel, double pX, double pY, double pZ,
@@ -19,10 +18,28 @@ public class AlexandriteParticles extends TextureSheetParticle {
         this.lifetime = 20;
         this.setSpriteFromAge(spriteSet);
 
+        this.rCol = 1f;
+        this.gCol = 1f;
+        this.bCol = 1f;
+
+
     }
 
     @Override
     public ParticleRenderType getRenderType() {
-        return null;
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    }
+
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
+
+        public Provider(SpriteSet spriteSet){
+            this.spriteSet =spriteSet;
+        }
+
+        public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double pX, double pY, double pZ,
+                                       double pXSpeed, double pYSpeed, double pZSpeed){
+            return new AlexandriteParticles(level, pX, pY, pZ, this.spriteSet, pXSpeed, pYSpeed, pZSpeed);
+        }
     }
 }
