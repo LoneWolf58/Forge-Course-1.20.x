@@ -1,0 +1,8 @@
+{
+  "values": [
+    "mccourse:nether_alexandrite_ore",
+    "#minecraft:mineable/pickaxe",
+    "#minecraft:mineable/axe",
+    "#minecraft:mineable/shovel"
+  ]
+}
